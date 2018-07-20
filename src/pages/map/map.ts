@@ -7,6 +7,9 @@ import {
 import { Component } from "@angular/core/";
 import { Platform } from 'ionic-angular';
 import { Geolocation } from '../../../node_modules/@ionic-native/geolocation';
+import { NavController } from 'ionic-angular';
+import { HomePage } from '../home/home';
+import { MenuController } from 'ionic-angular';
 
 @Component({
   selector: 'page-map',
@@ -14,7 +17,15 @@ import { Geolocation } from '../../../node_modules/@ionic-native/geolocation';
 })
 export class MapPage {
   map: GoogleMap;
-  constructor(public platform: Platform, public geolocation: Geolocation) { }
+  constructor(public platform: Platform, public geolocation: Geolocation, public navCtrl: NavController, public menuCtrl: MenuController) { }
+
+  navButton(){
+    this.navCtrl.push(HomePage);
+  }
+
+  doClick(){
+    this.menuCtrl.open();
+  }
 
   ionViewDidLoad() {
 
@@ -61,4 +72,5 @@ export class MapPage {
 
     this.map = GoogleMaps.create('map_canvas', mapOptions);
   }
+  
 }
